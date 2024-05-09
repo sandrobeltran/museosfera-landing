@@ -5,7 +5,7 @@ import CustomGrid from "../layouts/CustomGrid.astro";
 import Planets from "components/Planets.astro";
 ---
 
-<Layout title="Museósfera">
+<Layout title="Museósfera | Física Interactiva">
   <Planets />
   <CustomGrid>
     <section
@@ -82,53 +82,3 @@ import Planets from "components/Planets.astro";
     filter: brightness(0.85);
   }
 </style>
-
-<script>
-  const heroSection = document.getElementById("heroSection");
-  const planets = document.querySelectorAll(".hero-planet");
-  const heroTitle = document.getElementById("heroTitle");
-
-  function convertRange(
-    value: number,
-    oldRange: { min: number; max: number },
-    newRange: { min: number; max: number }
-  ) {
-    return (
-      ((value - oldRange.min) * (newRange.max - newRange.min)) /
-        (oldRange.max - oldRange.min) +
-      newRange.min
-    );
-  }
-
-  window.addEventListener("mousemove", (e) => {
-    let mouseX = e.clientX;
-    let mouseY = e.clientY;
-    const heroSectionFactor = 10;
-    const planetFactor = 5;
-    const heroTitleFactor = 8;
-    const heroTitleSkewFactor = 80;
-
-    let x = convertRange(
-      mouseX,
-      { min: 0, max: window.innerWidth },
-      { min: 60, max: -60 }
-    );
-    let y = convertRange(
-      mouseY,
-      { min: 0, max: window.innerHeight },
-      { min: 60, max: -60 }
-    );
-
-    heroSection!.style.backgroundPosition = `${50 - x / heroSectionFactor}% ${50 - y / heroSectionFactor}%`;
-
-    planets.forEach((planet, index) => {
-      let factor = planetFactor * (index + 0.4);
-
-      (planet as HTMLElement).style.transform =
-        `translate(${x / factor}px, ${y / factor}px)`;
-    });
-
-    heroTitle!.style.transform = `translate(${x / heroTitleFactor}px, ${y / heroTitleFactor}px) skew(${x / heroTitleSkewFactor}deg, ${y / heroTitleSkewFactor}deg) 
-	  `;
-  });
-</script>
