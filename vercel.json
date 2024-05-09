@@ -4,8 +4,7 @@
       "source": "/public/game/Build/:file*",
       "headers": [
         {
-          "key": "Content-Encoding",
-          "value": "gzip"
+          
         }
       ]
     }
