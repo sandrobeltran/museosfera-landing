@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/public/game/Build/*.*.gz",
+      "source": "/public/game/Build/:file*",
       "headers": [
         {
           "key": "Content-Encoding",
