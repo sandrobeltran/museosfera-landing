@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/public/game/*",
+      "source": "/:path*",
       "headers": [
         {
           "key": "Content-Encoding",
