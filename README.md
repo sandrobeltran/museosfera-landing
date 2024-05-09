@@ -1,5 +1,7 @@
 # Astro Starter Kit: Basics
 
+# Museósfera
+
 ```sh
 npm create astro@latest -- --template basics
 ```
