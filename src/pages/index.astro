@@ -9,7 +9,7 @@ import Planets from "components/Planets.astro";
   <Planets />
   <CustomGrid>
     <section
-      class="relative bg-[url(img/space-skybox.jpg)] bg-no-repeat col-span-12 w-full h-screen grid place-content-center overflow-hidden"
+      class="relative bg-[url(/img/space-skybox.jpg)] bg-no-repeat col-span-12 w-full h-screen grid place-content-center overflow-hidden"
       style={{ backgroundSize: "130% 130%" }}
       id="heroSection"
     >
@@ -28,7 +28,7 @@ import Planets from "components/Planets.astro";
           <p class="text-stone-100 text-4xl">Física Interactiva</p>
         </div>
 
-        <div class="flex flex-col gap-4 items-center">
+        <div class="flex relative z-10 flex-col gap-4 items-center">
           <a
             role="button"
             href="/jugar"
@@ -37,8 +37,8 @@ import Planets from "components/Planets.astro";
             ¡Jugar ahora!</a
           >
           <a
-            role="button"
-            href="/descargar"
+            href="/Museosfera.apk"
+            download="Museosfera Android.apk"
             class="text-center px-10 py-3 rounded-full border-2 border-stone-100/50 bg-gradient-to-br from-purple-500/10 to-sky-400/20 text-stone-100 font-sans font-bold min-w-32 w-fit"
           >
             Descargar</a

@@ -8,7 +8,7 @@ import Layout from "layouts/Layout.astro";
   <Planets />
   <CustomGrid>
     <section
-      class="relative bg-[url(img/space-skybox.jpg)] bg-no-repeat col-span-12 w-full h-screen flex justify-center items-center overflow-hidden p-10"
+      class="relative bg-[url(/img/space-skybox.jpg)] bg-no-repeat col-span-12 w-full h-screen flex justify-center items-center overflow-hidden p-10"
       style={{ backgroundSize: "130% 130%" }}
       id="heroSection"
     >
@@ -124,7 +124,7 @@ import Layout from "layouts/Layout.astro";
   // user.
   function unityShowBanner(msg: any, type: any) {
     function updateBannerVisibility() {
-      warningBanner.style.display = warningBanner!.children.length
+      warningBanner.style.display = warningBanner.children.length
         ? "block"
         : "none";
     }
@@ -139,6 +139,7 @@ import Layout from "layouts/Layout.astro";
         div.style.background = "yellow";
         div.style.padding = "10px";
       }
+
       setTimeout(function () {
         warningBanner.removeChild(div);
         updateBannerVisibility();
@@ -150,12 +151,12 @@ import Layout from "layouts/Layout.astro";
   var buildUrl = "/game/Build";
   var loaderUrl = buildUrl + "/webgl.loader.js";
   var config = {
-    dataUrl: buildUrl + "/webgl.data.br",
-    frameworkUrl: buildUrl + "/webgl.framework.js.br",
-    codeUrl: buildUrl + "/webgl.wasm.br",
+    dataUrl: buildUrl + "/webgl.data.gz",
+    frameworkUrl: buildUrl + "/webgl.framework.js.gz",
+    codeUrl: buildUrl + "/webgl.wasm.gz",
     streamingAssetsUrl: "StreamingAssets",
-    companyName: "DefaultCompany",
-    productName: "ProjectCoreLab",
+    companyName: "SBveloper",
+    productName: "Museósfera",
     productVersion: "0.1.0",
     showBanner: unityShowBanner,
   };
