@@ -1,0 +1,97 @@
+---
+import Image from "astro/components/Image.astro";
+import NoiseTexture from "assets/textures/noise.png";
+---
+
+<!-- FEATURES -->
+<section id="featuresSection" class="grid p-main gap-6 grid-cols-6 grid-rows-2">
+  <div
+    class="p-4 col-span-3 rounded-3xl text-light flex flex-col justify-end items-start min-h-64 bg-gradient-to-br from-light/5 to-sky-300/20 border-2 border-light/20 shadow-card relative backdrop-blur-xl"
+  >
+    <Image
+      src={NoiseTexture}
+      alt={"Textura de ruido"}
+      class={"absolute top-0 left-0 z-0 rounded-3xl w-full h-full mix-blend-soft-light opacity-50"}
+    />
+
+    <div class="flex flex-col items-start gap-2 relative">
+      <i class={`ti ti-books text-7xl`}></i>
+      <h6 class="font-title font-semibold text-3xl leading-[1]">
+        Más de 10 escenarios
+      </h6>
+      <p class="text-light/60 text-lg">De distintos temas de Física</p>
+    </div>
+  </div>
+  <div
+    class="p-4 col-span-3 rounded-3xl text-light flex flex-col justify-end items-start min-h-64 bg-gradient-to-br from-light/5 to-amber-300/20 border-2 border-light/20 shadow-card relative backdrop-blur-xl"
+  >
+    <Image
+      src={NoiseTexture}
+      alt={"Textura de ruido"}
+      class={"absolute top-0 left-0 z-0 rounded-3xl w-full h-full mix-blend-soft-light opacity-50"}
+    />
+
+    <div class="flex flex-col items-start gap-2 relative">
+      <i class={`ti ti-world-www text-7xl`}></i>
+      <h6 class="font-title font-semibold text-3xl leading-[1]">
+        Jugable desde la web
+      </h6>
+      <p class="text-light/60 text-lg">Sin necesidad de cargar nada</p>
+    </div>
+  </div>
+  <div
+    class="p-4 rounded-3xl col-span-2 text-light flex flex-col justify-end items-start min-h-64 bg-gradient-to-br from-light/5 to-yellow-300/20 border-2 border-light/20 shadow-card relative backdrop-blur-xl"
+  >
+    <Image
+      src={NoiseTexture}
+      alt={"Textura de ruido"}
+      class={"absolute top-0 left-0 z-0 rounded-3xl w-full h-full mix-blend-soft-light opacity-50"}
+    />
+
+    <div class="flex flex-col items-start gap-2 relative">
+      <div class="flex gap-0 items-center text-7xl">
+        <i class={`ti ti-device-mobile`}></i>
+        <i class={`ti ti-device-ipad`}></i>
+        <i class={`ti ti-device-desktop`}></i>
+      </div>
+      <h6 class="font-title font-semibold text-3xl leading-[1]">
+        Multiplataforma
+      </h6>
+      <p class="text-light/60 text-lg">Puedes jugar desde tu móvil</p>
+    </div>
+  </div>
+  <div
+    class="p-4 rounded-3xl col-span-2 text-light flex flex-col justify-end items-start min-h-64 bg-gradient-to-br from-light/5 to-pink-300/20 border-2 border-light/20 shadow-card relative backdrop-blur-xl"
+  >
+    <Image
+      src={NoiseTexture}
+      alt={"Textura de ruido"}
+      class={"absolute top-0 left-0 z-0 rounded-3xl w-full h-full mix-blend-soft-light opacity-50"}
+    />
+
+    <div class="flex flex-col items-start gap-2 relative">
+      <i class={`ti ti-brand-speedtest text-7xl`}></i>
+      <h6 class="font-title font-semibold text-3xl leading-[1]">Optimizado</h6>
+      <p class="text-light/60 text-lg">Para dispositivos con bajos recursos</p>
+    </div>
+  </div>
+  <div
+    class="p-4 rounded-3xl col-span-2 text-light flex flex-col justify-end items-start min-h-64 bg-gradient-to-br from-light/5 to-red-300/20 border-2 border-light/20 shadow-card relative backdrop-blur-xl"
+  >
+    <Image
+      src={NoiseTexture}
+      alt={"Textura de ruido"}
+      class={"absolute top-0 left-0 z-0 rounded-3xl w-full h-full mix-blend-soft-light opacity-50"}
+    />
+
+    <div class="flex flex-col items-start gap-2 relative">
+      <i class={`ti ti-hand-click text-7xl`}></i>
+      <h6 class="font-title font-semibold text-3xl leading-[1]">
+        Escenarios interactivos
+      </h6>
+      <p class="text-light/60 text-lg">
+        Relaciona las variables con el resultado
+      </p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,126 @@
+---
+import SandroPic from "assets/img/team/sandro.jpg";
+import JesusPic from "assets/img/team/jesus.jpg";
+import SebastianPic from "assets/img/team/sebastian.jpg";
+import HaroldPic from "assets/img/team/harold.jpg";
+import Image from "astro/components/Image.astro";
+---
+
+<!-- TEAM -->
+<section id="teamSection" class="p-main flex flex-col gap-10 items-center">
+  <h2 class="font-title font-bold text-4xl">Equipo</h2>
+
+  <article class="flex justify-center gap-6 w-full">
+    <div
+      class="bg-glass shadow-card rounded-3xl flex flex-col items-center gap-2 p-4 max-w-[240px] w-full"
+    >
+      <div class="w-full max-w-3/4 rounded-full aspect-square">
+        <Image
+          src={SandroPic}
+          alt={"Imagen de Sandro Beltrán"}
+          class={"w-full h-full rounded-full"}
+        />
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <h4 class="font-title text-xl font-semibold leading-[1.1]">
+          Sandro Beltrán
+        </h4>
+        <p class="text-light/60 text-sm font-medium">
+          Desarrollador Full Stack
+        </p>
+      </div>
+
+      <div class="w-full flex gap-2 justify-center mt-4 flex-1 items-end">
+        <a href="https://www.instagram.com/sandroj2" target="_blank">
+          <i class="ti ti-brand-instagram text-3xl"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/sandro-beltran-61a004248/"
+          target="_blank"
+        >
+          <i class="ti ti-brand-linkedin text-3xl"></i>
+        </a>
+      </div>
+    </div>
+    <div
+      class="bg-glass shadow-card rounded-3xl flex flex-col items-center gap-2 p-4 max-w-[240px] w-full"
+    >
+      <div class="w-full max-w-3/4 rounded-full aspect-square">
+        <Image
+          src={JesusPic}
+          alt={"Imagen de Jesús Sánchez"}
+          class={"w-full h-full rounded-full"}
+        />
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <h4 class="font-title text-xl font-semibold leading-[1.1]">
+          Jesús Sánchez
+        </h4>
+        <p class="text-light/60 text-sm font-medium">Diseñador UI/UX</p>
+      </div>
+
+      <div class="w-full flex gap-2 justify-center mt-4 flex-1 items-end">
+        <a href="https://www.instagram.com/jesus_andres0605/" target="_blank">
+          <i class="ti ti-brand-instagram text-3xl"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/jesus-andres-sanchez-guerrero-439b97298/"
+          target="_blank"
+        >
+          <i class="ti ti-brand-linkedin text-3xl"></i>
+        </a>
+      </div>
+    </div>
+    <div
+      class="bg-glass shadow-card rounded-3xl flex flex-col items-center gap-2 p-4 max-w-[240px] w-full"
+    >
+      <div class="w-full max-w-3/4 rounded-full aspect-square">
+        <Image
+          src={SebastianPic}
+          alt={"Imagen de Sebastián Maldonado"}
+          class={"w-full h-full rounded-full"}
+        />
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <h4 class="font-title text-xl font-semibold leading-[1.1]">
+          Sebatián Maldonado
+        </h4>
+        <p class="text-light/60 text-sm font-medium">
+          Marketing & Social Media
+        </p>
+      </div>
+
+      <div class="w-full flex gap-2 justify-center mt-4 flex-1 items-end">
+        <a href="https://www.instagram.com/sebastianm0507/" target="_blank">
+          <i class="ti ti-brand-instagram text-3xl"></i>
+        </a>
+      </div>
+    </div>
+    <div
+      class="bg-glass shadow-card rounded-3xl flex flex-col items-center gap-2 p-4 max-w-[240px] w-full"
+    >
+      <div class="w-full max-w-3/4 rounded-full aspect-square">
+        <Image
+          src={HaroldPic}
+          alt={"Imagen de Harold Mora"}
+          class={"w-full h-full rounded-full"}
+        />
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <h4 class="font-title text-xl font-semibold leading-[1.1]">
+          Harold Mora
+        </h4>
+        <p class="text-light/60 text-sm font-medium">Productor de Audio</p>
+      </div>
+
+      <div class="w-full flex gap-2 justify-center mt-4 flex-1 items-end">
+        <a
+          href="https://www.instagram.com/coldclaw_ryan_cat112/"
+          target="_blank"
+        >
+          <i class="ti ti-brand-instagram text-3xl"></i>
+        </a>
+      </div>
+    </div>
+  </article>
+</section>

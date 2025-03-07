@@ -1,0 +1,24 @@
+---
+import Image from "astro/components/Image.astro";
+import Button from "components/Button.astro";
+import MobileMockup from "assets/img/mobile-mockup.png";
+---
+
+<!-- MOBILE SECTION -->
+<section id="mobileSection" class="p-main">
+  <div
+    class="rounded-3xl p-main flex flex-col items-center gap-8 bg-[url(/mobile-bg.jpg)] bg-center bg-cover bg-no-repeat shadow-card"
+  >
+    <h6 class="font-title text-3xl font-semibold">
+      Disponible en Dispositivos Móviles
+    </h6>
+
+    <Image
+      src={MobileMockup}
+      alt={"Mockup de Museósfera en dispositivos móviles"}
+      class={"w-full max-w-3xl"}
+    />
+
+    <Button icon="device-mobile-down">Descargar</Button>
+  </div>
+</section>

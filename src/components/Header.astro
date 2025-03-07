@@ -1,0 +1,78 @@
+<header
+  class="w-full max-w-3xl rounded-full bg-glass fixed z-50 top-5 left-0 right-0 mx-auto px-8 py-3"
+>
+  <ul class="flex items-center justify-center gap-4">
+    <li
+      id="hero"
+      class="link transition-[color_.3s,_fontWeight_.3s] font-semibold text-light"
+    >
+      <a href="#heroSection">Inicio</a>
+    </li>
+    <li
+      id="features"
+      class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
+    >
+      <a href="#featuresSection">Características</a>
+    </li>
+    <li
+      id="events"
+      class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
+    >
+      <a href="#eventsSection">Eventos</a>
+    </li>
+    <li
+      id="reviews"
+      class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
+    >
+      <a href="#reviewsSection">Testimonios</a>
+    </li>
+    <li
+      id="contact"
+      class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
+    >
+      <a href="#contactSection">Contáctanos</a>
+    </li>
+  </ul>
+</header>
+
+<script>
+  const sections = document.querySelectorAll("section");
+  const positions: { id: string; top: number }[] = [];
+  const links = document.querySelectorAll(".link");
+
+  function updateLinksAppareance(selectedId: string) {
+    links.forEach((link) => {
+      if (link.id === selectedId) {
+        (link as HTMLElement).style.fontWeight = "600";
+        (link as HTMLElement).style.opacity = "1";
+        return;
+      }
+
+      (link as HTMLElement).style.fontWeight = "400";
+      (link as HTMLElement).style.opacity = "0.7";
+    });
+  }
+
+  sections.forEach((section) => {
+    positions.push({ id: section.id, top: section.offsetTop });
+  });
+
+  positions.sort((a, b) => b.top - a.top);
+
+  let lastSelectedId = "hero";
+
+  window.addEventListener("scroll", (e) => {
+    const scrollY = window.scrollY;
+
+    let selectedSection = positions.find(
+      (sectionOffset) => scrollY >= sectionOffset.top
+    );
+
+    if (selectedSection)
+      lastSelectedId = selectedSection?.id.replace("Section", "");
+
+    console.log(lastSelectedId);
+
+    updateLinksAppareance(lastSelectedId);
+  });
+</script>

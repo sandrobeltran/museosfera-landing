@@ -1,0 +1,37 @@
+---
+import { Image } from "astro:assets";
+import LogoLight from "assets/logo-light.svg";
+import LightSpot from "assets/img/light-spot.svg";
+import Button from "components/Button.astro";
+---
+
+<!-- HERO -->
+<section
+  id="heroSection"
+  class="w-full h-dvh flex justify-center items-center relative"
+>
+  <!-- LIGHT SPOT -->
+  <div class="w-full h-full absolute top-0 left-0 z-10 pointer-events-none">
+    <Image
+      src={LightSpot}
+      alt={"Haz de Luz"}
+      class={"w-full h-full object-cover object-bottom"}
+    />
+  </div>
+
+  <div class="flex flex-col items-center gap-8 relative">
+    <div class="flex flex-col items-center">
+      <Image
+        src={LogoLight}
+        alt={"Logo de Museósfera - Versión en Positivo"}
+        class={"w-full max-w-3xl"}
+      />
+
+      <h3 class="text-light/60 font-normal text-xl">
+        Aprender Física no tiene por qué ser aburrido
+      </h3>
+    </div>
+
+    <Button icon="device-gamepad-2" href="/jugar">Jugar ahora</Button>
+  </div>
+</section>

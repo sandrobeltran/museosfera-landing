@@ -1,0 +1,90 @@
+---
+import Image from "astro/components/Image.astro";
+import Planet1 from "assets/img/planet1.svg";
+import Planet2 from "assets/img/planet2.svg";
+import Planet3 from "assets/img/planet3.svg";
+
+import BigPlanet from "assets/img/big-planet.svg";
+---
+
+<div class="w-full h-full fixed top-0 left-0 z-0 pointer-events-none">
+  <!-- STARS -->
+  <div
+    class="w-full -z-10 absolute h-full object-cover mix-blend-soft-light opacity-15 bg-[url(/stars-bg.svg)] bg-cover bg-center bg-repeat"
+    id="starsBackground"
+  >
+  </div>
+
+  <Image
+    id={"planet1"}
+    src={Planet1}
+    alt={"Planet 1 - Museósfera"}
+    class={"w-1/4 aspect-square object-contain absolute top-[-40%] left-[15%] blur-lg transition-planet brightness-75"}
+  />
+
+  <Image
+    id={"planet2"}
+    src={Planet2}
+    alt={"Planet 2 - Museósfera"}
+    class={"w-[25%] aspect-square object-contain absolute top-[-15%] right-[-5%] drop-shadow-[0px_0px_32px_#9eb1ff78] blur-sm transition-planet"}
+  />
+
+  <Image
+    id={"planet3"}
+    src={Planet3}
+    alt={"Planet 3 - Museósfera"}
+    class={"w-[16%] aspect-square object-contain absolute bottom-[5%] left-[18%] blur-lg transition-planet"}
+  />
+
+  <div
+    class="w-full h-full absolute top-[100%] left-0 transition-planet"
+    id="bigPlanet"
+  >
+    <Image
+      src={BigPlanet}
+      alt={"Big Planet - Museósfera"}
+      class={"w-full h-full object-contain absolute top-0 left-0 z-10"}
+    />
+
+    <Image
+      src={BigPlanet}
+      alt={"Big Planet - Museósfera"}
+      class={"w-full h-full object-contain absolute top-0 left-0 z-0 opacity-30 brightness-200 scale-[1.06] blur-[2px] animate-[lightPulse_5s_ease-in-out_infinite]"}
+    />
+    <Image
+      src={BigPlanet}
+      alt={"Big Planet - Museósfera"}
+      class={"w-full h-full object-contain absolute top-0 left-0 z-0 opacity-10 brightness-200 scale-[1.15] blur-[3px] animate-[lightPulse_5s_ease-in-out_infinite]"}
+    />
+  </div>
+</div>
+
+<script>
+  const starsBackground = document.getElementById("starsBackground");
+  const planet1 = document.getElementById("planet1");
+  const planet2 = document.getElementById("planet2");
+  const planet3 = document.getElementById("planet3");
+  const bigPlanet = document.getElementById("bigPlanet");
+
+  function applyParallaxEffect() {
+    const scrollY = window.scrollY;
+
+    starsBackground!.style.backgroundPositionY = `${scrollY / -10}px`;
+
+    planet1!.style.transform = `translate(${scrollY / -40}px, ${scrollY / 10}px)`;
+    planet2!.style.transform = `translate(${scrollY / 40}px, ${scrollY / 13}px)`;
+    planet2!.style.scale = `${scrollY / 1000 < 1 ? 1 : scrollY / 1000}`;
+
+    planet3!.style.transform = `translate(${scrollY / 10}px, ${scrollY / -10}px)`;
+
+    bigPlanet!.style.transform = `translate(0px, ${-scrollY / 3}px)`;
+  }
+
+  //? APPLY EFFECTS ON LOAD AND ON SCROLL
+
+  window.addEventListener("DOMContentLoaded", () => applyParallaxEffect());
+
+  window.addEventListener("scroll", (e) => {
+    applyParallaxEffect();
+  });
+</script>

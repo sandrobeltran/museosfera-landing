@@ -1,0 +1,47 @@
+---
+import Image from "astro/components/Image.astro";
+import Planet4 from "assets/img/planet4.svg";
+import Saturn from "assets/img/saturn.svg";
+---
+
+<div class="w-full h-full fixed top-0 left-0 z-20 pointer-events-none">
+  <Image
+    id={"planet4"}
+    src={Planet4}
+    alt={"Planet 4 - Museósfera"}
+    class={"w-1/4 aspect-square object-contain absolute top-[9%] left-[-8%] drop-shadow-[0px_0px_24px_#c2ccf678] transition-planet"}
+  />
+
+  <Image
+    id={"saturn"}
+    src={Saturn}
+    alt={"Saturn - Museósfera"}
+    class={"w-[37%] aspect-square object-bottom object-contain absolute bottom-[4%] right-[-4%] drop-shadow-[0px_0px_24px_#df238f44] transition-planet"}
+  />
+</div>
+
+<script>
+  const planet4 = document.getElementById("planet4");
+  const saturn = document.getElementById("saturn");
+
+  function applyParallaxEffect() {
+    const scrollY = window.scrollY;
+
+    planet4!.style.transform = `translate(${scrollY / -10}px, ${scrollY / 5}px)`;
+
+    saturn!.style.transform = `translate(${scrollY / 3}px, ${scrollY / -15}px)`;
+  }
+
+  //? APPLY EFFECTS ON LOAD AND ON SCROLL
+
+  window.addEventListener("DOMContentLoaded", () => {
+    planet4!.style.animationDuration = "4.5s";
+    saturn!.style.animationDuration = "7s";
+
+    applyParallaxEffect();
+  });
+
+  window.addEventListener("scroll", (e) => {
+    applyParallaxEffect();
+  });
+</script>

@@ -1,0 +1,28 @@
+---
+interface Props {
+  href?: string;
+  icon?: string;
+  type?: "button" | "submit";
+}
+
+const { href, icon, type } = Astro.props;
+
+const baseClass =
+  "flex flex-1 items-center justify-center gap-2 rounded-full bg-light text-brand-primary font-bold text-xl px-8 py-3 shadow-card cursor-pointer";
+---
+
+{
+  href ? (
+    <a href={href} class={baseClass}>
+      {icon && <i class={`ti ti-${icon} text-3xl`} />}
+
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={baseClass}>
+      {icon && <i class={`ti ti-${icon} text-3xl`} />}
+
+      <slot />
+    </button>
+  )
+}

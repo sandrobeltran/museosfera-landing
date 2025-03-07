@@ -1,0 +1,56 @@
+---
+import Image from "astro/components/Image.astro";
+
+import ExpoFisicaCover from "assets/img/events/expo-fisica.jpg";
+import RadioCover from "assets/img/events/radio.jpg";
+import ShowRoomCover from "assets/img/events/show-room.jpg";
+import ZulimaCover from "assets/img/events/zulima.jpg";
+---
+
+<!-- EVENTS -->
+<section id="eventsSection" class="p-main flex flex-col gap-10 items-center">
+  <h2 class="font-title font-bold text-4xl">Eventos</h2>
+
+  <article class="grid grid-cols-2 gap-6 w-full">
+    <div class="p-4 rounded-3xl bg-glass shadow-card flex flex-col gap-3">
+      <Image
+        src={ExpoFisicaCover}
+        alt={"Presentación de Museósfera en la Expofísica de la Unisimon edición V, VI y VII"}
+        class={"rounded-xl aspect-video object-cover"}
+      />
+      <p class="text-2xl font-title leading-tight font-medium">
+        Expo Física Universidad Simón Bolívar edición V, VI y VII
+      </p>
+    </div>
+    <div class="p-4 rounded-3xl bg-glass shadow-card flex flex-col gap-3">
+      <Image
+        src={RadioCover}
+        alt={"Presentación de Museósfera en el Martes de E-Tech en Unisimon al Aire - Emisora La Voz del Norte"}
+        class={"rounded-xl aspect-video object-cover"}
+      />
+      <p class="text-2xl font-title leading-tight font-medium">
+        Martes de E-Tech en Unisimon al Aire - Emisora La Voz del Norte
+      </p>
+    </div>
+    <div class="p-4 rounded-3xl bg-glass shadow-card flex flex-col gap-3">
+      <Image
+        src={ShowRoomCover}
+        alt={"Presentación de Museósfera en el Show Room Universidad Simón Bolivar edición 2023-2024-2025"}
+        class={"rounded-xl aspect-video object-cover"}
+      />
+      <p class="text-2xl font-title leading-tight font-medium">
+        Show Room Universidad Simón Bolivar edición 2023-2024-2025
+      </p>
+    </div>
+    <div class="p-4 rounded-3xl bg-glass shadow-card flex flex-col gap-3">
+      <Image
+        src={ZulimaCover}
+        alt={"Presentación en el Teatro Zulima Edición Derecho Tech"}
+        class={"rounded-xl aspect-video object-cover"}
+      />
+      <p class="text-2xl font-title leading-tight font-medium">
+        Presentación en el Teatro Zulima Edición Derecho Tech
+      </p>
+    </div>
+  </article>
+</section>
