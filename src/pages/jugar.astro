@@ -1,0 +1,288 @@
+---
+import Layout from "layouts/Layout.astro";
+import Image from "astro/components/Image.astro";
+
+import Logo from "assets/logo-light.svg";
+import BackgroundLayer from "components/floating/BackgroundLayer.astro";
+import ForegroundLayer from "components/floating/ForegroundLayer.astro";
+import Button from "components/Button.astro";
+---
+
+<Layout title="Jugar | Museósfera">
+  <BackgroundLayer />
+
+  <div>
+    <section
+      class="relative bg-[url(/img/space-skybox.jpg)] bg-no-repeat col-span-12 w-full h-screen flex justify-center items-center overflow-hidden p-10 max-sm:p-4 max-sm:!bg-cover"
+      style={{ backgroundSize: "130% 130%" }}
+      id="heroSection"
+    >
+      <article
+        class="max-sm:hidden w-full max-w-5xl h-fit bg-gradient-to-br relative z-50 rounded-3xl backdrop-blur-md shadow-lg shadow-purple-950/25 border-zinc-100 from-zinc-100/70 to-zinc-100/10 overflow-hidden"
+      >
+        <header class="w-full p-4 flex justify-between items-center">
+          <a
+            href="/"
+            class="flex underline max-sm:font-medium text-sm gap-2 items-center font-semibold"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-6 max-sm:h-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3"></path>
+            </svg>
+            Volver al inicio
+          </a>
+          <div class="flex justify-end">
+            <Image src={Logo} alt={"Logo de Museósfera"} class="h-8 w-auto" />
+          </div>
+        </header>
+        <div id="canvas-wrapper" class="h-full w-full aspect-[16/9] relative">
+          <!-- LOADER -->
+          <div class="absolute w-full h-full z-0 grid place-content-center">
+            <div
+              class="animate-spin absolute inset-0 m-auto border-[6px] border-t-zinc-100 border-zinc-100/30 w-16 aspect-square rounded-full"
+            >
+            </div>
+            <p id="percentText" class="text-zinc-100 font-semibold">0%</p>
+          </div>
+
+          <button
+            class="absolute z-10 grid place-content-center bottom-3 right-3 w-12 h-12 rounded-2xl bg-zinc-100/30 text-zinc-100 cursor-pointer"
+            id="fullscreenButton"
+          >
+            <svg
+              id="fullscreen-enter-icon"
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              ><path
+                d="M16 3H22V9H20V5H16V3ZM2 3H8V5H4V9H2V3ZM20 19V15H22V21H16V19H20ZM4 19H8V21H2V15H4V19Z"
+              ></path></svg
+            >
+
+            <svg
+              id="fullscreen-exit-icon"
+              class="hidden"
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              ><path
+                d="M18 7H22V9H16V3H18V7ZM8 9H2V7H6V3H8V9ZM18 17V21H16V15H22V17H18ZM8 15V21H6V17H2V15H8Z"
+              ></path></svg
+            >
+          </button>
+
+          <!-- UNITY EMBED -->
+          <canvas
+            id="unity-canvas"
+            class="relative !w-full !h-full"
+            tabindex="-1"></canvas>
+          <div id="unity-loading-bar">
+            <div id="unity-logo"></div>
+            <div id="unity-progress-bar-empty">
+              <div id="unity-progress-bar-full"></div>
+            </div>
+          </div>
+          <div id="unity-warning"></div>
+          <div id="unity-footer" class="!hidden">
+            <div id="unity-webgl-logo"></div>
+            <div id="unity-fullscreen-button"></div>
+            <div id="unity-build-title">ProjectCoreLab</div>
+          </div>
+        </div>
+      </article>
+      <article
+        class="max-sm:flex hidden flex-col items-center gap-12 w-full max-w-5xl h-fit bg-gradient-to-br relative z-50 rounded-3xl backdrop-blur-md shadow-lg p-5 shadow-purple-950/25 border-zinc-100 from-zinc-100/50 to-zinc-100/10 overflow-hidden"
+      >
+        <div class="text-center">
+          <h1 class="text-2xl font-semibold text-stone-100">Lo sentimos...</h1>
+          <p class="text-stone-100/80 font-medium text-left mt-4">
+            Actualmente no recomendamos jugar Museosfera desde un navegador
+            móvil. Sin embargo puedes descargarlo para Android con el botón de
+            abajo
+          </p>
+        </div>
+        <Button
+          href="/museosfera.apk"
+          download="Museosfera Android.apk"
+          icon="device-mobile-down"
+        >
+          Descargar</Button
+        >
+
+        <a href="/" class="text-light font-medium flex items-center gap-2">
+          <i class={`ti ti-home text-2xl`}></i>
+          <span class="underline">Volver</span></a
+        >
+      </article>
+    </section>
+  </div>
+</Layout>
+
+<script>
+  var container = document.querySelector("#unity-container") as HTMLElement;
+  var canvas = document.querySelector("#unity-canvas") as HTMLElement;
+  var loadingBar = document.querySelector("#unity-loading-bar") as HTMLElement;
+  var progressBarFull = document.querySelector(
+    "#unity-progress-bar-full"
+  ) as HTMLElement;
+  var fullscreenButton = document.querySelector(
+    "#unity-fullscreen-button"
+  ) as HTMLElement;
+  var warningBanner = document.querySelector("#unity-warning") as HTMLElement;
+  const percentText = document.getElementById("percentText");
+
+  // Shows a temporary message banner/ribbon for a few seconds, or
+  // a permanent error message on top of the canvas if type=='error'.
+  // If type=='warning', a yellow highlight color is used.
+  // Modify or remove this function to customize the visually presented
+  // way that non-critical warnings and error messages are presented to the
+  // user.
+  function unityShowBanner(msg: any, type: any) {
+    function updateBannerVisibility() {
+      warningBanner.style.display = warningBanner.children.length
+        ? "block"
+        : "none";
+    }
+    var div = document.createElement("div");
+    div.innerHTML = msg;
+    warningBanner.appendChild(div);
+    if (type == "error") {
+      div.style.background = "red";
+      div.style.padding = "10px";
+    } else {
+      if (type == "warning") {
+        div.style.background = "yellow";
+        div.style.padding = "10px";
+      }
+
+      setTimeout(function () {
+        warningBanner.removeChild(div);
+        updateBannerVisibility();
+      }, 5000);
+    }
+    updateBannerVisibility();
+  }
+
+  var buildUrl = "/game/Build";
+  var loaderUrl = buildUrl + "/web.loader.js";
+  var config = {
+    dataUrl: buildUrl + "/web.data.gz",
+    frameworkUrl: buildUrl + "/web.framework.js.gz",
+    codeUrl: buildUrl + "/web.wasm.gz",
+    streamingAssetsUrl: "StreamingAssets",
+    companyName: "DevSandro",
+    productName: "Museosfera",
+    productVersion: "1.0.0",
+    showBanner: unityShowBanner,
+  };
+
+  // By default, Unity keeps WebGL canvas render target size matched with
+  // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+  // Set this to false if you want to decouple this synchronization from
+  // happening inside the engine, and you would instead like to size up
+  // the canvas DOM size and WebGL render target sizes yourself.
+  // config.matchWebGLToCanvasSize = false;
+
+  if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+    // Mobile device style: fill the whole browser client area with the game canvas:
+
+    var meta = document.createElement("meta");
+    meta.name = "viewport";
+    meta.content =
+      "width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes";
+    document.getElementsByTagName("head")[0].appendChild(meta);
+    container.className = "unity-mobile";
+    canvas.className = "unity-mobile";
+
+    // To lower canvas resolution on mobile devices to gain some
+    // performance, uncomment the following line:
+    // config.devicePixelRatio = 1;
+  } else {
+    // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+
+    canvas.style.width = "960px";
+    canvas.style.height = "600px";
+  }
+
+  loadingBar.style.display = "block";
+
+  const percentFormatter = new Intl.NumberFormat("es-CO", {
+    style: "decimal",
+    maximumFractionDigits: 0,
+  });
+
+  var script = document.createElement("script");
+  script.src = loaderUrl;
+  script.onload = () => {
+    createUnityInstance(canvas, config, (progress: any) => {
+      percentText!.innerHTML = `${percentFormatter.format(progress * 100)}%`;
+      progressBarFull.style.width = 100 * progress + "%";
+    })
+      .then((unityInstance) => {
+        loadingBar.style.display = "none";
+        fullscreenButton.onclick = () => {
+          unityInstance.SetFullscreen(1);
+        };
+      })
+      .catch((message) => {
+        alert(message);
+      });
+  };
+
+  document.body.appendChild(script);
+</script>
+
+<script>
+  const fullscreenButton = document.getElementById("fullscreenButton")!;
+  const enterIcon = document.getElementById("fullscreen-enter-icon")!;
+  const exitIcon = document.getElementById("fullscreen-exit-icon")!;
+  const canvas = document.getElementById("unity-canvas")!;
+  const canvasWrapper = document.getElementById("canvas-wrapper")!;
+  let toggle = false;
+
+  fullscreenButton?.addEventListener("click", (e) => {
+    console.log(toggle);
+    if (!toggle) {
+      if (canvas) {
+        exitIcon.style.display = "inline-block";
+        enterIcon.style.display = "none";
+
+        canvasWrapper.requestFullscreen();
+        toggle = true;
+      }
+    } else {
+      if (document.fullscreenElement) {
+        enterIcon.style.display = "inline-block";
+        exitIcon.style.display = "none";
+
+        document.exitFullscreen();
+        toggle = false;
+      }
+    }
+  });
+
+  document.addEventListener("fullscreenchange", () => {
+    if (!document.fullscreenElement) {
+      enterIcon.style.display = "inline-block";
+      exitIcon.style.display = "none";
+      toggle = false;
+    }
+  });
+</script>

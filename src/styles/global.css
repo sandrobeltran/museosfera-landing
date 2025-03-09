@@ -25,14 +25,18 @@
   padding: 48px 64px;
 }
 
+@media screen and (width < 768px) {
+  .p-main {
+    padding: 16px;
+  }
+}
+
 .bg-space {
-  background-image: linear-gradient(
-    to right,
-    #010329 0%,
-    #5b2caa 46%,
-    #5b2caa 55%,
-    #010329 100%
-  );
+  background-image: linear-gradient(to right,
+      #010329 0%,
+      #5b2caa 46%,
+      #5b2caa 55%,
+      #010329 100%);
 }
 
 section {
@@ -50,19 +54,23 @@ section {
   0% {
     translate: 0px 0px;
   }
+
   50% {
     translate: 0px 30px;
   }
+
   100% {
     translate: 0px 0px;
   }
 }
 
 @keyframes lightPulse {
+
   0%,
   100% {
     opacity: 0.3;
   }
+
   50% {
     opacity: 0.15;
   }

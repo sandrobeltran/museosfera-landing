@@ -5,73 +5,151 @@ import Button from "components/Button.astro";
 ---
 
 <!-- CONTACT -->
-<section id="contactSection" class="p-main flex gap-6">
-  <div class="flex-1 flex flex-col items-start p-6 gap-8">
-    <h2 class="font-title text-6xl font-bold">Contáctanos</h2>
+<section id="contactSection" class="p-main flex gap-6 max-md:flex-col">
+  <div class="flex-1 flex flex-col items-start p-6 gap-8 w-full">
+    <h2 class="font-title text-6xl font-bold w-full max-md:text-3xl">
+      Contáctanos
+    </h2>
 
     <form
       id="contactForm"
       class="flex flex-col items-center gap-4 w-full max-w-lg"
     >
-      <div
-        class="flex gap-2 border-light/20 rounded-full items-center w-full bg-gradient-to-br from-light/5 to-sky-300/20 border-2 pl-4"
-      >
-        <i class="ti ti-user text-lg text-light/60"></i>
-        <input
-          id="nameField"
-          type="text"
-          placeholder="Tu nombre"
-          class="focus:outline-none w-full font-medium px-4 pl-0 py-3"
-        />
+      <div class="flex flex-col w-full gap-1">
+        <div
+          class="flex gap-2 border-light/20 rounded-full items-center w-full bg-gradient-to-br from-light/5 to-sky-300/20 border-2 pl-4"
+        >
+          <i class="ti ti-user text-lg text-light/60"></i>
+          <input
+            id="nameField"
+            type="text"
+            placeholder="Tu nombre"
+            class="focus:outline-none w-full font-medium px-4 pl-0 py-3"
+          />
+        </div>
+        <p id="nameError" class="pl-2 text-red-500 font-medium hidden"></p>
       </div>
-      <div
-        class="flex gap-2 border-light/20 rounded-full items-center w-full bg-gradient-to-br from-light/5 to-sky-300/20 border-2 pl-4"
-      >
-        <i class="ti ti-mail text-lg text-light/60"></i>
-        <input
-          id="emailField"
-          type="text"
-          placeholder="Tu email"
-          class="focus:outline-none w-full font-medium px-4 pl-0 py-3"
-        />
+
+      <div class="flex flex-col w-full gap-1">
+        <div
+          class="flex gap-2 border-light/20 rounded-full items-center w-full bg-gradient-to-br from-light/5 to-sky-300/20 border-2 pl-4"
+        >
+          <i class="ti ti-mail text-lg text-light/60"></i>
+          <input
+            id="emailField"
+            type="text"
+            placeholder="Tu email"
+            class="focus:outline-none w-full font-medium px-4 pl-0 py-3"
+          />
+        </div>
+        <p id="emailError" class="pl-2 text-red-500 font-medium hidden"></p>
       </div>
-      <textarea
-        id="messageField"
-        rows="5"
-        placeholder="Tu mensaje"
-        class="focus:outline-none w-full font-medium px-4 py-3 resize-none border-light/20 bg-gradient-to-br from-light/5 to-sky-300/20 rounded-4xl border-2"
-      ></textarea>
+      <div class="flex flex-col w-full gap-1">
+        <textarea
+          id="messageField"
+          rows="5"
+          placeholder="Tu mensaje"
+          class="focus:outline-none w-full font-medium px-4 py-3 resize-none border-light/20 bg-gradient-to-br from-light/5 to-sky-300/20 rounded-4xl border-2"
+        ></textarea>
+        <p id="messageError" class="pl-2 text-red-500 font-medium hidden"></p>
+      </div>
 
       <div class="w-full mt-3 flex">
         <Button icon="send" type="submit">Enviar</Button>
       </div>
     </form>
   </div>
-  <div class="flex-1 flex justify-center items-center">
+  <div class="flex-1 flex justify-center items-center w-full max-md:p-6">
     <Image
       src={ContactIllustrator}
       alt={"Ilustración de contácto"}
-      class={"max-w-lg animate-[oscilating_5s_ease-in-out_infinite]"}
+      class={"max-w-lg animate-[oscilating_5s_ease-in-out_infinite] w-full"}
     />
   </div>
 </section>
 
 <script>
   const contactForm = document.getElementById("contactForm");
+  const [nameError, emailError, messageError] = [
+    document.getElementById("nameError"),
+    document.getElementById("emailError"),
+    document.getElementById("messageError"),
+  ];
+
+  const nameField = contactForm!.querySelector(
+    "#nameField"
+  ) as HTMLInputElement;
+
+  const emailField = contactForm!.querySelector(
+    "#emailField"
+  ) as HTMLInputElement;
+  const messageField = contactForm!.querySelector(
+    "#messageField"
+  ) as HTMLTextAreaElement;
+
+  function showError(element: HTMLElement | null, message: string) {
+    if (!element) return;
+
+    element.innerHTML = message;
+    element.style.display = "inline-block";
+  }
+
+  let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  function validateFields(name: string, email: string, message: string) {
+    let amountOfErrors = 0;
+
+    if (!name) {
+      amountOfErrors++;
+      showError(nameError, "Ingresa tu nombre");
+    }
+    if (!emailRegex.test(email)) {
+      amountOfErrors++;
+      showError(emailError, "Ingresa un email válido");
+    }
+    if (!message) {
+      amountOfErrors++;
+      showError(messageError, "Ingresa tu mensaje");
+    }
+
+    return amountOfErrors;
+  }
+
+  function cleanErrors() {
+    nameError!.style.display = "none";
+    emailError!.style.display = "none";
+    messageError!.style.display = "none";
+  }
+
+  function cleanFields() {
+    nameField.value = "";
+    emailField.value = "";
+    messageField.value = "";
+  }
 
   contactForm?.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const name = (contactForm.querySelector("#nameField") as HTMLInputElement)
-      .value;
-    const email = (contactForm.querySelector("#emailField") as HTMLInputElement)
-      .value;
-    const message = (
-      contactForm.querySelector("#messageField") as HTMLTextAreaElement
-    ).value;
+    const name = nameField.value;
+    const email = emailField.value;
+    const message = messageField.value;
+
+    cleanErrors();
+
+    if (validateFields(name, email, message) > 0) return;
+
+    const a = document.createElement("a");
+
+    let composedMessage = `¡Hola!, soy ${name} y este es mi email: ${email}.
+    ${message}`;
+
+    a.href = `https://wa.me/584261261222?text=${encodeURIComponent(composedMessage)}`;
+    a.target = "_blank";
+    a.click();
+    a.remove();
+
+    cleanFields();
 
     console.table({ name, email, message });
-
-    console.log("first");
   });
 </script>

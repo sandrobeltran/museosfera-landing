@@ -10,7 +10,7 @@ import BigPlanet from "assets/img/big-planet.svg";
 <div class="w-full h-full fixed top-0 left-0 z-0 pointer-events-none">
   <!-- STARS -->
   <div
-    class="w-full -z-10 absolute h-full object-cover mix-blend-soft-light opacity-15 bg-[url(/stars-bg.svg)] bg-cover bg-center bg-repeat"
+    class="w-full -z-10 absolute max-sm:bg-repeat h-full object-cover mix-blend-soft-light opacity-15 bg-[url(/stars-bg.svg)] bg-center max-md:bg-repeat max-md:bg-[auto_30%] bg-[auto_50%]"
     id="starsBackground"
   >
   </div>
@@ -19,21 +19,21 @@ import BigPlanet from "assets/img/big-planet.svg";
     id={"planet1"}
     src={Planet1}
     alt={"Planet 1 - Museósfera"}
-    class={"w-1/4 aspect-square object-contain absolute top-[-40%] left-[15%] blur-lg transition-planet brightness-75"}
+    class={"w-1/4 max-md:w-[40%] max-md:top-[-10%] aspect-square object-contain absolute top-[-40%] left-[15%] blur-lg transition-planet brightness-75"}
   />
 
   <Image
     id={"planet2"}
     src={Planet2}
     alt={"Planet 2 - Museósfera"}
-    class={"w-[25%] aspect-square object-contain absolute top-[-15%] right-[-5%] drop-shadow-[0px_0px_32px_#9eb1ff78] blur-sm transition-planet"}
+    class={"w-[25%] max-md:w-[40%] max-md:top-[-5%] max-md:right-[-15%] aspect-square object-contain absolute top-[-15%] right-[-5%] drop-shadow-[0px_0px_32px_#9eb1ff78] blur-sm transition-planet"}
   />
 
   <Image
     id={"planet3"}
     src={Planet3}
     alt={"Planet 3 - Museósfera"}
-    class={"w-[16%] aspect-square object-contain absolute bottom-[5%] left-[18%] blur-lg transition-planet"}
+    class={"w-[16%] max-md:w-[35%] max-md:left-[-20%] max-md:bottom-[16%] aspect-square object-contain absolute bottom-[5%] left-[18%] blur-lg transition-planet"}
   />
 
   <div

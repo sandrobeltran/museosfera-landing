@@ -1,39 +1,147 @@
-<header
-  class="w-full max-w-3xl rounded-full bg-glass fixed z-50 top-5 left-0 right-0 mx-auto px-8 py-3"
->
-  <ul class="flex items-center justify-center gap-4">
-    <li
-      id="hero"
-      class="link transition-[color_.3s,_fontWeight_.3s] font-semibold text-light"
+---
+import Button from "./Button.astro";
+
+const pathname = Astro.originPathname
+
+---
+{pathname =="/"&&
+<header class="fixed z-50 top-0 left-0 right-0 mx-auto flex justify-center">
+  <nav
+    class="w-full max-w-3xl mt-5 rounded-full bg-glass px-8 py-3 max-md:hidden"
+  >
+    <ul class="flex items-center justify-center gap-4">
+      <li
+        id="hero"
+        class="link transition-[color_.3s,_fontWeight_.3s] font-semibold text-light"
+      >
+        <a href="#heroSection">Inicio</a>
+      </li>
+      <li
+        id="features"
+        class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
+      >
+        <a href="#featuresSection">Características</a>
+      </li>
+      <li
+        id="events"
+        class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
+      >
+        <a href="#eventsSection">Eventos</a>
+      </li>
+      <!-- <li
+        id="reviews"
+        class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
+      >
+        <a href="#reviewsSection">Testimonios</a>
+      </li> -->
+      <li
+        id="contact"
+        class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
+      >
+        <a href="#contactSection">Contáctanos</a>
+      </li>
+
+      <span class="w-[1px] h-6 rounded-full bg-light/50 inline-block"></span>
+      <li
+        id="contact"
+        class="transition-[color_.3s,_fontWeight_.3s] font-medium text-light"
+      >
+        <a href="/jugar">Jugar</a>
+      </li>
+    </ul>
+  </nav>
+
+  <nav class="w-full max-md:flex hidden p-4 justify-end">
+    <button
+      id="menuButton"
+      class="w-14 h-14 aspect-square grid place-content-center rounded-3xl bg-glass"
     >
-      <a href="#heroSection">Inicio</a>
-    </li>
-    <li
-      id="features"
-      class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
-    >
-      <a href="#featuresSection">Características</a>
-    </li>
-    <li
-      id="events"
-      class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
-    >
-      <a href="#eventsSection">Eventos</a>
-    </li>
-    <li
-      id="reviews"
-      class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
-    >
-      <a href="#reviewsSection">Testimonios</a>
-    </li>
-    <li
-      id="contact"
-      class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
-    >
-      <a href="#contactSection">Contáctanos</a>
-    </li>
-  </ul>
+      <i class={`ti ti-menu text-3xl`}></i>
+    </button>
+  </nav>
+
+  <div
+    id="navbarMenu"
+    class="w-full h-full fixed top-0 left-full transition-[left_.3s] flex flex-col bg-dark p-4 items-center"
+  >
+    <!-- CLOSE BUTTON -->
+    <div class="w-full flex justify-end">
+      <button
+        id="closeMenuButton"
+        class="w-14 h-14 aspect-square grid place-content-center rounded-3xl bg-glass"
+      >
+        <i class={`ti ti-x text-3xl`}></i>
+      </button>
+    </div>
+
+    <div class="w-full flex-1 flex items-center justify-center">
+      <!-- MENU CONTENT -->
+      <ul
+        id="mobileMenuLinks"
+        class="flex flex-col items-center text-center text-2xl gap-4"
+      >
+        <li
+          id="hero"
+          class="link transition-[color_.3s,_fontWeight_.3s] font-semibold text-light"
+        >
+          <a href="#heroSection">Inicio</a>
+        </li>
+        <li
+          id="features"
+          class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
+        >
+          <a href="#featuresSection">Características</a>
+        </li>
+        <li
+          id="events"
+          class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
+        >
+          <a href="#eventsSection">Eventos</a>
+        </li>
+        <!-- <li
+          id="reviews"
+          class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
+        >
+          <a href="#reviewsSection">Testimonios</a>
+        </li> -->
+        <li
+          id="contact"
+          class="link transition-[color_.3s,_fontWeight_.3s] font-normal text-light opacity-70"
+        >
+          <a href="#contactSection">Contáctanos</a>
+        </li>
+      </ul>
+    </div>
+    <div class="p-4 w-fit">
+      <Button
+        download="Museósfera.apk"
+        href="museosfera.apk"
+        icon="device-mobile-down">Descargar</Button
+      >
+    </div>
+  </div>
 </header>
+}
+
+<script>
+  const menuButton = document.getElementById("menuButton");
+  const navbarMenu = document.getElementById("navbarMenu");
+  const closeMenuButton = document.getElementById("closeMenuButton");
+
+  const mobileMenuLinks = document.querySelectorAll("#mobileMenuLinks li a");
+
+  mobileMenuLinks.forEach((link) =>
+    link.addEventListener("click", (e) => (navbarMenu!.style.left = "100%"))
+  );
+
+  menuButton?.addEventListener("click", (e) => {
+    navbarMenu!.style.left = "0%";
+  });
+
+  closeMenuButton?.addEventListener("click", (e) => {
+    navbarMenu!.style.left = "100%";
+  });
+</script>
 
 <script>
   const sections = document.querySelectorAll("section");

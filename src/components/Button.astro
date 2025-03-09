@@ -3,9 +3,10 @@ interface Props {
   href?: string;
   icon?: string;
   type?: "button" | "submit";
+  download?: string;
 }
 
-const { href, icon, type } = Astro.props;
+const { href, icon, type, download } = Astro.props;
 
 const baseClass =
   "flex flex-1 items-center justify-center gap-2 rounded-full bg-light text-brand-primary font-bold text-xl px-8 py-3 shadow-card cursor-pointer";
@@ -13,7 +14,7 @@ const baseClass =
 
 {
   href ? (
-    <a href={href} class={baseClass}>
+    <a href={href} class={baseClass} download={download}>
       {icon && <i class={`ti ti-${icon} text-3xl`} />}
 
       <slot />

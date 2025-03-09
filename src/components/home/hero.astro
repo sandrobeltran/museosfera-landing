@@ -19,7 +19,7 @@ import Button from "components/Button.astro";
     />
   </div>
 
-  <div class="flex flex-col items-center gap-8 relative">
+  <div class="flex flex-col items-center gap-8 relative p-8 text-center">
     <div class="flex flex-col items-center">
       <Image
         src={LogoLight}
@@ -32,6 +32,16 @@ import Button from "components/Button.astro";
       </h3>
     </div>
 
-    <Button icon="device-gamepad-2" href="/jugar">Jugar ahora</Button>
+    <div class="max-md:inline-block hidden">
+      <Button
+        download="Museósfera.apk"
+        href="museosfera.apk"
+        icon="device-mobile-down">Descargar</Button
+      >
+    </div>
+
+    <div class="max-md:hidden">
+      <Button icon="device-gamepad-2" href="/jugar">Jugar ahora</Button>
+    </div>
   </div>
 </section>
